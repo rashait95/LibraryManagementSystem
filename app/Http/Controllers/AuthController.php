@@ -11,12 +11,11 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\RegisterRequest;
 
-class AuthController extends Controller
+
+class AuthController extends Controller 
+
 {
-    public function __construct()
-    {
-        $this->middleware('auth:api', ['except' => ['login','register','refresh','logout']]);
-    }
+    
 
     public function register(UserRequest $request){
         try{
