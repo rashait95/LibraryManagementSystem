@@ -25,7 +25,10 @@ class AuthController extends Controller
                 'name'=>$request->name,
                 'email'=>$request->email,
                 'password'=>Hash::make($request->password),
+                'role_name'=>assignRole($request->role_name),
+                'status'=>$request->status,
             ]);
+
            
             $token = Auth::login($user);
 

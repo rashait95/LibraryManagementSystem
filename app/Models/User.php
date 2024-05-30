@@ -5,6 +5,7 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Traits\ModelObserval;
 use Laravel\Sanctum\HasApiTokens;
+use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
 use PHPOpenSourceSaver\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -12,7 +13,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable implements JWTSubject 
 {
-    use HasApiTokens, HasFactory, Notifiable,ModelObserval;
+    use HasApiTokens, HasFactory, Notifiable,HasRoles;
 
     /**
      * The attributes that are mass assignable.
@@ -23,6 +24,8 @@ class User extends Authenticatable implements JWTSubject
         'name',
         'email',
         'password',
+        'status',
+        'role_name',
     ];
 
     /**
@@ -42,6 +45,7 @@ class User extends Authenticatable implements JWTSubject
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'role_name'=>'array'
     ];
 
 
@@ -65,4 +69,7 @@ class User extends Authenticatable implements JWTSubject
             $model->id, $model->name, $model->email
         );
     }
+
+
+    
 }
